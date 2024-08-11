@@ -31,7 +31,7 @@ async function getData(source, sourceLayer) {
 }
 function loadSymbols(name) {
     return new Promise((resolve, reject) => {
-        map.loadImage(`https://raw.githubusercontent.com/Byrix/temp/main/${name}.png`, (err, image) => {
+        map.loadImage(`https://raw.githubusercontent.com/Byrix/parknear/main/symbols/${name}.png`, (err, image) => {
             if (err) {
                 reject(err);
             } else {

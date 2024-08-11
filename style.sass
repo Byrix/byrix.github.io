@@ -1,0 +1,314 @@
+$background-prim: #2e3440
+$background-sec: #3b4252
+$background-tert: red
+$font-primary: yellow
+$font-important: purple
+$font-secondary: green
+
+body
+  margin: 0
+  color: var(--font-primary) !important
+  font-family: "Noto Sans Display", sans-serif !important
+  font-optical-sizing: auto
+  font-weight: 400 !important
+  font-style: normal
+  font-variation-settings: "wdth" 100
+  .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6
+    color: var(--font-primary) !important
+    font-family: "Noto Serif", serif !important
+    font-optical-sizing: auto
+    font-weight: 700 !important
+    font-style: normal
+    font-variation-settings: "wdth" 100
+
+.light-theme
+  --font-primary: #2e3440
+  --font-secondary: #3b4252
+  --font-tertiary: #434c5e
+
+  --background-primary: #eceff4
+  --background-secondary: #e5e9f0
+  --background-tertiary: #d8dee9
+  --background-four: #d8dee9
+
+  --button-background: var(--background-tertiary)
+  --button-active: #5e81ac
+  --button-hover: #81a1c1
+
+.dark-theme
+  --font-primary: #eceff4
+  --font-secondary: #e5e9f0
+  --font-tertiary: #d8dee9
+
+  --background-primary: #2e3440
+  --background-secondary: #3b4252
+  --background-tertiary: #434c5e
+  --background-four: #4c566a
+
+  --button-background: var(--background-tertiary)
+  --button-active: #5e81ac
+  --button-hover: #81a1c1
+
+*
+  box-sizing: inherit !important
+
+$header-height: 5vh
+header
+  background: var(--background-secondary)
+  width: 100vw
+  height: $header-height
+  min-height: 50px
+  border-bottom: 0.1vh solid var(--background-primary)
+  display: flex
+  justify-content: space-between
+
+  h1
+    margin:
+      top: auto
+      bottom: auto
+      left: 1vw
+    display: inline-block
+    vertical-align: middle
+    float: left
+  span
+    float: right
+    cursor: pointer
+    margin:
+      top: auto
+      bottom: auto
+      right: 1vw
+
+
+#main
+  width: 100vw
+  height: 100vh - $header-height
+  background: var(--background-primary)
+  display: flex !important
+  flex:
+    direction: row
+
+  $nav-width: 20%
+  nav
+    height: 100%
+    width: $nav-width
+    min-width: 350px
+    background: var(--background-secondary)
+  #map
+    flex-grow: 1
+    height: 100vh - $header-height
+    background: var(--background-primary)
+    //width: 100%-$nav_width
+    //float: right
+
+nav
+  align-items: center
+  justify-content: space-between
+  display: flex
+  flex:
+    direction: column
+
+  #nav-distance
+    .radio-buttons
+      label
+        width: 25%
+  #nav-street
+    .radio-buttons
+      label
+        width: 33%
+  #nav-content
+    width: 95%
+  .nav-section
+    justify-content: normal
+    height: 30%
+    width: 95%
+    margin-top: 1vh
+
+    #select_station
+      height: 3em
+      width: 100%
+      background-color: var(--background-tertiary)
+      box-shadow: none
+      color: var(--font-primary)
+      align-content: center
+      border:
+        radius: 10000px
+        width: 0
+
+    .radio-buttons
+      display: flex
+      flex:
+        direction: row
+      width: 100%
+      border:
+        radius: 10000px
+      overflow: hidden
+      label
+        align-items: center
+        display: inline
+      .nav-button
+        width: 100%
+        display: inline-block
+        padding: 10px 20px
+        background-color: var(--background-four)
+        color: var(--button-text)
+        border:
+          width: 2px
+          color: var(--background-secondary)
+          style: solid
+          top: none
+          bottom: none
+        cursor: pointer
+        &:hover
+          background-color: var(--button-hover)
+      input[type='radio']
+        display: none
+        margin: 0
+      input[type='radio']:checked + .nav-button
+        background-color: var(--button-active)
+        color: var(--button-active-text)
+
+  #liability
+    padding-left: 0.5vw
+    color: var(--font-tertiary)
+    width: 95%
+    font:
+      size: 0.7em
+
+#map-legend
+  position: absolute
+  display: flex
+  flex-direction: column
+  bottom: 0
+  right: 0
+  height: auto
+  width: auto
+  background-color: var(--background-secondary)
+  margin: 0 10px 25px 0
+  padding: 1vh 1vw
+  border-radius: 20px
+  .legend-item
+    display: flex
+    flex-direction: row
+    margin-top: 0.1vh
+    align-content: space-between
+    justify-content: space-evenly
+    #box
+      width: 15px
+      height: 15px
+      background-color: var(--background-secondary)
+      border: 1px solid var(--font-secondary)
+  .hide
+    display: none
+#map
+  color: var(--font-primary) !important
+  font-family: "Noto Sans Display", sans-serif !important
+  font-optical-sizing: auto
+  font-weight: 400 !important
+  font-style: normal
+  font-variation-settings: "wdth" 100
+  font-size: 0.8em
+  .mapboxgl-ctrl-icon
+    background-color: var(--background-secondary)
+    justify-content: center
+    align-content: center
+    background-image: none
+    color: var(--font-secondary)
+  .mapboxgl-ctrl-group:not(:empty)
+    box-shadow: none
+  .mapboxgl-popup-content
+    background-color: var(--background-secondary)
+    border-radius: 20px
+    box-shadow: none
+    color: var(--font-secondary)
+  .mapboxgl-popup-tip
+    border-bottom-color: var(--background-secondary)
+    border-top-color: var(--background-secondary)
+  button.mapboxgl-ctrl-compass
+    cursor: pointer
+
+
+#modal
+  .modal-content
+    background-color: var(--background-primary)
+    color: var(--font-primary)
+    border: none
+    .modal-header
+      border-bottom-color: var(--background-tertiary)
+      .modal-title
+        color: var(--font-primary)
+    .modal-body
+      display: flex
+      flex-direction: column
+      align-items: center
+      #mdl-distance
+        .radio-buttons
+          label
+            width: 25%
+      #mdl-street
+        .radio-buttons
+          label
+            width: 33%
+      #mdl-description
+        font-size: 1.1em
+      .nav-section
+        justify-content: normal
+        height: 30%
+        width: 95%
+        margin-top: 1vh
+
+        #mdl_select_station
+          height: 3em
+          width: 100%
+          background-color: var(--background-tertiary)
+          box-shadow: none
+          color: var(--font-primary)
+          align-content: center
+          border:
+            radius: 10000px
+            width: 0
+
+        .radio-buttons
+          display: flex
+          flex:
+            direction: row
+          width: 100%
+          border:
+            radius: 10000px
+          overflow: hidden
+          label
+            align-items: center
+            display: inline
+          .nav-button
+            width: 100%
+            display: inline-block
+            padding: 10px 20px
+            background-color: var(--background-four)
+            color: var(--button-text)
+            border:
+              width: 2px
+              color: var(--background-secondary)
+              style: solid
+              top: none
+              bottom: none
+            cursor: pointer
+            &:hover
+              background-color: var(--button-hover)
+          input[type='radio']
+            display: none
+            margin: 0
+          input[type='radio']:checked + .nav-button
+            background-color: var(--button-active)
+            color: var(--button-active-text)
+    .modal-footer
+      background-color: inherit
+      border-top-color: var(--background-tertiary)
+      .btn
+        border: none
+        color: var(--font-primary)
+        &:hover
+          background-color: var(--button-hover)
+          color: var(--background-tertiary)
+      .btn-secondary
+        background-color: var(--background-tertiary)
+      .btn-primary
+        background-color: var(--button-active)
