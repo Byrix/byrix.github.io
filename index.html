@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interactive Mapping Assignment</title>
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="./js.js"></script>
+
+    <link rel='stylesheet' href='style.css' />
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css' />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel='stylesheet' href="https://fonts.googleapis.com/css2?family=Arvo&family=Noto+Serif:wght@100..900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+    <div id='modal' class="modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Where are you heading?</h3>
+                </div>
+                <div class="modal-body">
+                    <div id="mdl-description">
+                        <p>Tell us a bit about which train station you're heading to and we'll show you some of the best places to park!</p>
+                    </div>
+                    <div id="mdl-station" class="nav-section" style="">
+<!--                        <label for="select_station" style="">Select a station:</label><br style="">-->
+                        <label for="select_station" style=""></label><br style="">
+                        <p>Which train station are you departing from?</p>
+                        <select id="mdl_select_station" style=""><option value="Royal Park," style="">Royal Park</option><option value="Macaulay," style="">Macaulay</option><option value="North Melbourne," style="">North Melbourne</option><option value="Jolimont," style="">Jolimont</option><option value="Kensington South," style="">South Kensington</option><option value="Kensington," style="">Kensington</option><option value="Southern Cross," style="">Southern Cross</option><option value="Flagstaff," style="">Flagstaff</option><option value="Melbourne Central," style="">Melbourne Central</option><option value="Parliament," style="">Parliament</option><option value="Flinders Street," style="">Flinders Street</option></select>
+                    </div>
+                    <div id="mdl-distance" class="nav-section" style="">
+                        <label style=""></label>
+                        <p>What's the maximum distance you're willing to walk between the carpark and station?</p>
+                        <div class="radio-buttons" style="">
+                            <label style="">
+                                <input type="radio" name="mdl-distance" value="10" class="mdl-btns" style="">
+                                <div class="nav-button" style="">100 m</div>
+                            </label>
+                            <label style="">
+                                <input type="radio" name="mdl-distance" value="25" class="mdl-btns" style="">
+                                <div class="nav-button" style="">250 m</div>
+                            </label>
+                            <label style="">
+                                <input type="radio" name="mdl-distance" value="50" class="mdl-btns" style="">
+                                <div class="nav-button" style="">500 m</div>
+                            </label>
+                            <label style="">
+                                <input type="radio" name="mdl-distance" value="_1" class="mdl-btns" style="">
+                                <div class="nav-button" style="">1 km</div>
+                            </label>
+                        </div>
+                    </div>
+                    <div id="mdl-street" class="nav-section" style="">
+                        <label style=""></label><br style="">
+                        <p>And finally, do you have a preference for on- or off-street parking?</p>
+                        <div class="radio-buttons" style="">
+                            <label style="">
+                                <input type="radio" name="mdl-street" value="0" class="mdl-btns" style="">
+                                <div class="nav-button" style="">Off-street</div>
+                            </label>
+                            <label style="">
+                                <input type="radio" name="mdl-street" value="1" class="mdl-btns" style="">
+                                <div class="nav-button" style="">On-street</div>
+                            </label>
+                            <label style="">
+                                <input type="radio" name="mdl-street" value="3" class="mdl-btns" style="">
+                                <div class="nav-button" style="">Either</div>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="nav-button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="nav-button" class="btn btn-primary" onclick="modalSubmit()">Apply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <header id="head">
+        <h1>ParkNear</h1>
+        <span id='style-switch' class="material-symbols-outlined"></span>
+    </header>
+    <div id="main">
+        <nav id="nav">
+            <div id="nav-content">
+                <div id='nav-station' class="nav-section">
+                    <label for="select_station">Select a station:</label><br>
+                    <select id="select_station"></select>
+                </div>
+                <div id='nav-distance' class="nav-section">
+                    <label>Walking distance:</label>
+                    <div class="radio-buttons">
+                        <label>
+                            <input type="radio" name="distance" value="10" class="btn-test">
+                            <div class="nav-button">100 m</div>
+                        </label>
+                        <label>
+                            <input type="radio" name="distance" value="25" class="btn-test">
+                            <div class="nav-button">250 m</div>
+                        </label>
+                        <label>
+                            <input type="radio" name="distance" value="50" class="btn-test">
+                            <div class="nav-button">500 m</div>
+                        </label>
+                        <label>
+                            <input type="radio" name="distance" value="_1" class="btn-test">
+                            <div class="nav-button">1 km</div>
+                        </label>
+                    </div>
+                </div>
+                <div id='nav-street' class="nav-section">
+                    <label>On street parking:</label><br>
+
+                    <div class="radio-buttons">
+                        <label>
+                            <input type="radio" name="street" value='0' class="btn-test">
+                            <div class="nav-button">Off-street</div>
+                        </label>
+                        <label>
+                            <input type="radio" name="street" value='1' class="btn-test">
+                            <div class="nav-button">On-street</div>
+                        </label>
+                        <label>
+                            <input type="radio" name="street" value='3' class="btn-test">
+                            <div class="nav-button">Either</div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <p id="liability">Information provided is not guaranteed to be up-to-date or accurate. Users should verify details independently before making travel arrangements or other decisions.</p>
+            </div>
+        </nav>
+        <div id="map"></div>
+        <div id="map-legend">
+            <h4>Legend</h4>
+            <div class="legend-item">
+                <span class="material-symbols-outlined">local_parking</span>
+                Off-street parking
+            </div>
+            <div class="legend-item">
+                <span class="material-symbols-outlined">directions_car</span>
+                On-street parking
+            </div>
+            <div class="legend-item">
+                <span class="material-symbols-outlined" style="color: #5e81ac">train</span>
+                Train station
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,324 @@
+body {
+  margin: 0;
+  color: var(--font-primary) !important;
+  font-family: "Noto Sans Display", sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 400 !important;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+body .h1, body .h2, body .h3, body .h4, body .h5, body .h6, body h1, body h2, body h3, body h4, body h5, body h6 {
+  color: var(--font-primary) !important;
+  font-family: "Noto Serif", serif !important;
+  font-optical-sizing: auto;
+  font-weight: 700 !important;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
+.light-theme {
+  --font-primary: #2e3440;
+  --font-secondary: #3b4252;
+  --font-tertiary: #434c5e;
+  --background-primary: #eceff4;
+  --background-secondary: #e5e9f0;
+  --background-tertiary: #d8dee9;
+  --background-four: #d8dee9;
+  --button-background: var(--background-tertiary);
+  --button-active: #5e81ac;
+  --button-hover: #81a1c1;
+}
+
+.dark-theme {
+  --font-primary: #eceff4;
+  --font-secondary: #e5e9f0;
+  --font-tertiary: #d8dee9;
+  --background-primary: #2e3440;
+  --background-secondary: #3b4252;
+  --background-tertiary: #434c5e;
+  --background-four: #4c566a;
+  --button-background: var(--background-tertiary);
+  --button-active: #5e81ac;
+  --button-hover: #81a1c1;
+}
+
+* {
+  box-sizing: inherit !important;
+}
+
+header {
+  background: var(--background-secondary);
+  width: 100vw;
+  height: 5vh;
+  min-height: 50px;
+  border-bottom: 0.1vh solid var(--background-primary);
+  display: flex;
+  justify-content: space-between;
+}
+header h1 {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 1vw;
+  display: inline-block;
+  vertical-align: middle;
+  float: left;
+}
+header span {
+  float: right;
+  cursor: pointer;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 1vw;
+}
+
+#main {
+  width: 100vw;
+  height: 95vh;
+  background: var(--background-primary);
+  display: flex !important;
+  flex-direction: row;
+}
+#main nav {
+  height: 100%;
+  width: 20%;
+  min-width: 350px;
+  background: var(--background-secondary);
+}
+#main #map {
+  flex-grow: 1;
+  height: 95vh;
+  background: var(--background-primary);
+}
+
+nav {
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+}
+nav #nav-distance .radio-buttons label {
+  width: 25%;
+}
+nav #nav-street .radio-buttons label {
+  width: 33%;
+}
+nav #nav-content {
+  width: 95%;
+}
+nav .nav-section {
+  justify-content: normal;
+  height: 30%;
+  width: 95%;
+  margin-top: 1vh;
+}
+nav .nav-section #select_station {
+  height: 3em;
+  width: 100%;
+  background-color: var(--background-tertiary);
+  box-shadow: none;
+  color: var(--font-primary);
+  align-content: center;
+  border-radius: 10000px;
+  border-width: 0;
+}
+nav .nav-section .radio-buttons {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  border-radius: 10000px;
+  overflow: hidden;
+}
+nav .nav-section .radio-buttons label {
+  align-items: center;
+  display: inline;
+}
+nav .nav-section .radio-buttons .nav-button {
+  width: 100%;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--background-four);
+  color: var(--button-text);
+  border-width: 2px;
+  border-color: var(--background-secondary);
+  border-style: solid;
+  border-top: none;
+  border-bottom: none;
+  cursor: pointer;
+}
+nav .nav-section .radio-buttons .nav-button:hover {
+  background-color: var(--button-hover);
+}
+nav .nav-section .radio-buttons input[type=radio] {
+  display: none;
+  margin: 0;
+}
+nav .nav-section .radio-buttons input[type=radio]:checked + .nav-button {
+  background-color: var(--button-active);
+  color: var(--button-active-text);
+}
+nav #liability {
+  padding-left: 0.5vw;
+  color: var(--font-tertiary);
+  width: 95%;
+  font-size: 0.7em;
+}
+
+#map-legend {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  bottom: 0;
+  right: 0;
+  height: auto;
+  width: auto;
+  background-color: var(--background-secondary);
+  margin: 0 10px 25px 0;
+  padding: 1vh 1vw;
+  border-radius: 20px;
+}
+#map-legend .legend-item {
+  display: flex;
+  flex-direction: row;
+  margin-top: 0.1vh;
+  align-content: space-between;
+  justify-content: space-evenly;
+}
+#map-legend .legend-item #box {
+  width: 15px;
+  height: 15px;
+  background-color: var(--background-secondary);
+  border: 1px solid var(--font-secondary);
+}
+#map-legend .hide {
+  display: none;
+}
+
+#map {
+  color: var(--font-primary) !important;
+  font-family: "Noto Sans Display", sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 400 !important;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+  font-size: 0.8em;
+}
+#map .mapboxgl-ctrl-icon {
+  background-color: var(--background-secondary);
+  justify-content: center;
+  align-content: center;
+  background-image: none;
+  color: var(--font-secondary);
+}
+#map .mapboxgl-ctrl-group:not(:empty) {
+  box-shadow: none;
+}
+#map .mapboxgl-popup-content {
+  background-color: var(--background-secondary);
+  border-radius: 20px;
+  box-shadow: none;
+  color: var(--font-secondary);
+}
+#map .mapboxgl-popup-tip {
+  border-bottom-color: var(--background-secondary);
+  border-top-color: var(--background-secondary);
+}
+#map button.mapboxgl-ctrl-compass {
+  cursor: pointer;
+}
+
+#modal .modal-content {
+  background-color: var(--background-primary);
+  color: var(--font-primary);
+  border: none;
+}
+#modal .modal-content .modal-header {
+  border-bottom-color: var(--background-tertiary);
+}
+#modal .modal-content .modal-header .modal-title {
+  color: var(--font-primary);
+}
+#modal .modal-content .modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#modal .modal-content .modal-body #mdl-distance .radio-buttons label {
+  width: 25%;
+}
+#modal .modal-content .modal-body #mdl-street .radio-buttons label {
+  width: 33%;
+}
+#modal .modal-content .modal-body #mdl-description {
+  font-size: 1.1em;
+}
+#modal .modal-content .modal-body .nav-section {
+  justify-content: normal;
+  height: 30%;
+  width: 95%;
+  margin-top: 1vh;
+}
+#modal .modal-content .modal-body .nav-section #mdl_select_station {
+  height: 3em;
+  width: 100%;
+  background-color: var(--background-tertiary);
+  box-shadow: none;
+  color: var(--font-primary);
+  align-content: center;
+  border-radius: 10000px;
+  border-width: 0;
+}
+#modal .modal-content .modal-body .nav-section .radio-buttons {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  border-radius: 10000px;
+  overflow: hidden;
+}
+#modal .modal-content .modal-body .nav-section .radio-buttons label {
+  align-items: center;
+  display: inline;
+}
+#modal .modal-content .modal-body .nav-section .radio-buttons .nav-button {
+  width: 100%;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--background-four);
+  color: var(--button-text);
+  border-width: 2px;
+  border-color: var(--background-secondary);
+  border-style: solid;
+  border-top: none;
+  border-bottom: none;
+  cursor: pointer;
+}
+#modal .modal-content .modal-body .nav-section .radio-buttons .nav-button:hover {
+  background-color: var(--button-hover);
+}
+#modal .modal-content .modal-body .nav-section .radio-buttons input[type=radio] {
+  display: none;
+  margin: 0;
+}
+#modal .modal-content .modal-body .nav-section .radio-buttons input[type=radio]:checked + .nav-button {
+  background-color: var(--button-active);
+  color: var(--button-active-text);
+}
+#modal .modal-content .modal-footer {
+  background-color: inherit;
+  border-top-color: var(--background-tertiary);
+}
+#modal .modal-content .modal-footer .btn {
+  border: none;
+  color: var(--font-primary);
+}
+#modal .modal-content .modal-footer .btn:hover {
+  background-color: var(--button-hover);
+  color: var(--background-tertiary);
+}
+#modal .modal-content .modal-footer .btn-secondary {
+  background-color: var(--background-tertiary);
+}
+#modal .modal-content .modal-footer .btn-primary {
+  background-color: var(--button-active);
+}
+
+/*# sourceMappingURL=style.css.map */
