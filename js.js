@@ -1,7 +1,8 @@
-const accessKey = 'pk.eyJ1Ijoic2VhbmJyb29rZXIiLCJhIjoiY2x0b3ZzYjA5MGtvZzJqcGNrb3g1d3l4aSJ9.9p072aD5fFi4HG5YuWHI6A';
+require('dotenv').config()
+
+const accessKey = process.env.MAPBOX_KEY;
 const zoom_extents = { '10': 17, '25': 16, '50': 15, '_1': 14 }
 var modal, map, dark, train_stations, zoomed_in = false;
-
 
 async function getData(source, sourceLayer) {
     return new Promise((resolve, reject) => {
